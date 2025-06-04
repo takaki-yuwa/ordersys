@@ -10,16 +10,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/Accounting")
 public class Accounting extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	private static final long serialVersionUID = 1L;
 
-        // パラメータの取得
-        String strTableNo = request.getParameter("tableNo");
-        // JSPへフォワード
-        //request.setAttribute("orderHistory", OrderDetailsList);
-        //quest.getRequestDispatcher("/WEB-INF/JSP/Accounting.jsp").forward(request, response);
-        request.getRequestDispatcher("/WebContent/Accounting.html").forward(request, response);
-    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// パラメータの取得
+		String strTableNo = request.getParameter("tableNo");
+		// JSPへフォワード
+		//request.setAttribute("orderHistory", OrderDetailsList);
+		//quest.getRequestDispatcher("/WEB-INF/JSP/Accounting.jsp").forward(request, response);
+		request.getRequestDispatcher("/WebContent/Accounting.html").forward(request, response);
+	}
 }
