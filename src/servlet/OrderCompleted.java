@@ -37,11 +37,19 @@ public class OrderCompleted extends HttpServlet {
 			pstmt=conn.prepareStatement(sql);
 			
 			//パラメータを設定
-			pstmt.setLong(1, 1);	//order_id
-			pstmt.setInt(2, 10);	//product_quantity
-			pstmt.setInt(3, 1230);	//order_price
-			pstmt.setInt(4, 3);		//table_number
-			
+			//pstmt.setLong(1, 1);	//order_id
+			//pstmt.setInt(2, 10);	//product_quantity
+			//pstmt.setInt(3, 1230);	//order_price
+			//pstmt.setInt(4, 3);		//table_number
+	        String strOrderId= request.getParameter("orderId");
+	        String strProductQuantity = request.getParameter("productQuantity");
+	        String strOrderPrice = request.getParameter("orderPrice");
+	        String strTableNumber = request.getParameter("tableNumber");
+			pstmt.setLong(1, Long.parseLong(strOrderId));          //order_id
+			pstmt.setInt(2, Integer.parseInt(strProductQuantity)); //product_quantity
+			pstmt.setInt(3, Integer.parseInt(strOrderPrice));      //order_price
+			pstmt.setInt(4, Integer.parseInt(strTableNumber));     //table_number
+
 			//SQLを実行
 			int rowsAffected = pstmt.executeUpdate();
 			
