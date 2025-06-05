@@ -97,8 +97,6 @@
 			<!--注文完了へ遷移-->
 			<form action="OrderCompleted" method="post">
 				<button class="fixed-right-button">
-					<input type="hidden" name="order_id" value="${sessionScope.orderList.order_id}">
-					<input type="hidden" name="tableNo" value="3"> 
 					<img src="Image/Vector.png" alt="注文のボタン"> 注文する
 				</button>
 			</form>
@@ -118,21 +116,14 @@
 </body>
 <c:forEach var="order_id" items="${sessionScope.orderList.order_id}"
 	varStatus="product">
-	<c:set var="product_name"
-		value="${sessionScope.orderList.product_name[product.index]}" />
-	<c:set var="product_price"
-		value="${sessionScope.orderList.product_price[product.index]}" />
-	<c:set var="quantity"
-		value="${sessionScope.orderList.menu_quantity[product.index]}" />
-	<c:set var="menu_stock"
-		value="${sessionScope.orderList.menu_stock[product.index]}" />
-	<c:set var="subtotal"
-		value="${sessionScope.orderList.menu_subtotal[product.index]}" />
+	<c:set var="product_name" value="${sessionScope.orderList.product_name[product.index]}" />
+	<c:set var="product_price" value="${sessionScope.orderList.product_price[product.index]}" />
+	<c:set var="quantity" value="${sessionScope.orderList.menu_quantity[product.index]}" />
+	<c:set var="menu_stock" value="${sessionScope.orderList.menu_stock[product.index]}" />
+	<c:set var="subtotal" value="${sessionScope.orderList.menu_subtotal[product.index]}" />
 	<c:set var="subtotal" value="${product_price * quantity}" />
-	<c:forEach var="topping_name"
-		items="${sessionScope.orderList.topping_name}" varStatus="topping">
-		<c:set var="topping_price"
-			value="${sessionScope.orderList.topping_price[topping.index]}" />
+	<c:forEach var="topping_name" items="${sessionScope.orderList.topping_name}" varStatus="topping">
+		<c:set var="topping_price" value="${sessionScope.orderList.topping_price[topping.index]}" />
 		<c:set var="subtotal" value="${subtotal+(topping_price * quantity)}" />
 		<!-- JavaScriptで埋め込む -->
 		<script>
