@@ -10,32 +10,23 @@ public class order_details_list {
     private int product_quantity;
     private int order_price;
     private int table_number;
-    private int accounting_flag;
     // 商品詳細
     private String product_name;
     private int product_price;
     private int product_id;
     // トッピング
-    private List<Integer> topping_id;
-    private List<Integer> topping_quantity;
-    private List<String> topping_name;
-    private List<Integer> topping_price;
+    List<multiple_topping_list> multipleToppingList;
 
-    public order_details_list(int order_details_id, int order_id, int product_quantity, int order_price, int table_number, int accounting_flag,
-    		String name, Integer price) {
+    public order_details_list(int order_details_id, int order_id, int product_quantity, int order_price, int table_number,
+    		String name, Integer price, List<multiple_topping_list> multipleToppingLis) {
     	this.order_details_id = order_details_id;
     	this.order_id = order_id;
         this.product_quantity = product_quantity;
         this.order_price = order_price;
         this.table_number = table_number;
-        this.accounting_flag = accounting_flag;
     	this.product_name = name;
         this.product_price = price;
-    }
-    public void topping_list(List<String> name, List<Integer> price, List<Integer> topping_quantity) {
-    	this.topping_name = new ArrayList<>(name);
-        this.topping_price = new ArrayList<>(price);
-        this.topping_quantity = new ArrayList<>(topping_quantity);
+        this.multipleToppingList = new ArrayList<>(multipleToppingLis);
     }
     public int getorder_details_id() {
         return order_details_id;
@@ -69,19 +60,11 @@ public class order_details_list {
         return product_id;
     }
 
-    public List<String> getTopping_name() {
-        return topping_name;
+    public void addmultipleToppingList(multiple_topping_list multipleToppingLis) {
+    	multipleToppingList.add(multipleToppingLis);
     }
 
-    public List<Integer> getTopping_price() {
-        return topping_price;
-    }
-
-    public List<Integer> getTopping_id() {
-        return topping_id;
-    }
-
-    public List<Integer> getTopping_quantity() {
-        return topping_quantity;
+    public List<multiple_topping_list> getMultipleToppingList() {
+    	return multipleToppingList;
     }
 }

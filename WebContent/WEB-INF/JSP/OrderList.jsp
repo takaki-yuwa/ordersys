@@ -96,11 +96,11 @@
 			<!--ボタン-->
 			<!--注文完了へ遷移-->
 			<form action="OrderCompleted" method="post">
-				<button class="fixed-right-button">
                 <input type="hidden" name="orderId" value="123457">
                 <input type="hidden" name="productQuantity" value="${quantity}">
                 <input type="hidden" name="orderPrice" value="${product_price}">
                 <input type="hidden" name="tableNumber" value="3">
+				<button class="fixed-right-button">
 				<img src="Image/Vector.png" alt="注文のボタン"> 注文する
 				</button>
 			</form>

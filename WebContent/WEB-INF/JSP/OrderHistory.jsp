@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ page import="java.util.List" %>
 <%@ page import="servlet.order_details_list" %>
+<%@ page import="servlet.multiple_topping_list" %>
 <%@ page import="java.util.ArrayList" %>
 <html>
 <head>
@@ -60,7 +61,15 @@
                     }
         %>
                             <div class="break-word bold-text"><%= p.getProduct_name() %></div>
-                            <div> <%= p.getproduct_quantity() %>個</div>
+        <%
+                    for (multiple_topping_list m : p.getMultipleToppingList()) {
+        %>
+                            <div> ・<%= m.getTopping_name() %>： <%= m.getTopping_quantity() %>個</div>
+        <%
+                    }
+        %>
+                            <div></div>
+                            <div> 数量：<%= p.getproduct_quantity() %>個</div>
                             <div> <%= p.getorder_price() %>円</div>
                         </div>
         <%
@@ -113,7 +122,7 @@
             }
         %>
 		<!--メニューへ遷移-->
-		<a href="OrderMenu.html">
+		<a href="OrderSystem">
 		<button class="fixed-left-button">
 			<img src="Image/menu.png" alt="メニューのボタン">
 			メニュー

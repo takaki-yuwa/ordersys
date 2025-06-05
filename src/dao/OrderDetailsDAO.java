@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import servlet.multiple_topping_list;
 import servlet.order_details_list;
 
 public class OrderDetailsDAO {
@@ -16,7 +17,8 @@ public class OrderDetailsDAO {
 
         try (Connection con = DBUtil.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT order_details_id, order_id, product_quantity, order_price, table_number, accounting_flag FROM order_details where table_number = " + search_table_number + " AND order_price = " + search_order_price))
+            ResultSet rs = st.executeQuery("SELECT order_details_id, order_id, product_quantity, order_price, table_number, accounting_flag FROM order_details where table_number = " 
+            + search_table_number + " AND order_price = " + search_order_price + " AND accounting_flag = " + 0))
             {
 
             while (rs.next()) {
@@ -25,7 +27,6 @@ public class OrderDetailsDAO {
                 int product_quantity = rs.getInt("product_quantity");
                 int order_price = rs.getInt("order_price");
                 int table_number = rs.getInt("table_number");
-                int accounting_flag = rs.getInt("accounting_flag");
 
                 // 商品詳細テーブル取得
                 ResultSet rs_product_details = st.executeQuery("SELECT product_id FROM product_details where order_id = " + order_id);
@@ -38,10 +39,19 @@ public class OrderDetailsDAO {
                         String product_name = rs_products.getString("product_name");
                         int product_price = rs_products.getInt("product_price");
 
-                        orderDetailsList.add(new order_details_list(order_details_id, order_id, product_quantity, order_price, table_number, accounting_flag,
-                                product_name, product_price));
+		                // トッピングテーブル取得
+		                List<multiple_topping_list> multipleToppingList = new ArrayList<>();
+		                ResultSet rs_topping = st.executeQuery("SELECT topping.topping_name, multiple_toppings.topping_quantity FROM topping Join multiple_toppings ON topping.topping_id = multiple_toppings.topping_id where multiple_toppings.order_id = " + order_id);
+		                while(rs_topping.next()) {
+		                    String topping_name = rs_topping.getString("topping_name");
+		                    int topping_quantity = rs_topping.getInt("topping_quantity");
+		                    multipleToppingList.add(new multiple_topping_list(topping_name, topping_quantity));
+		                }
+		                orderDetailsList.add(new order_details_list(order_details_id, order_id, product_quantity, order_price, table_number,
+		                        product_name, product_price, multipleToppingList));
                     }
                 }
+
             }
             con.close();
 
