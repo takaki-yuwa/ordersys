@@ -1,0 +1,109 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<c:set var="Action" value="${applicationScope.Action}" scope="page" />
+<c:set var="Param" value="${applicationScope.Param}" scope="page" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--サイトのサイズ自動調整-->
+<meta name="viewport"
+	content="width=device-width,height=device-height,initial-scale=1.0">
+<title>メニュー画面</title>
+<!--.cssの呼び出し-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/OrderMenu/ordermenu.css">
+<link rel="icon" href="data:," />
+</head>
+<body>
+	<!--ヘッダー(店の名前)-->
+	<header class="header-storename">
+		<div class="header-image-wrapper">
+			<img src="${pageContext.request.contextPath}/image/木目3.jpg" alt="背景" class="header-background-image">
+			<img src="${pageContext.request.contextPath}/image/biglogo.png" alt="店の名前" class="header-image">
+		</div>
+	</header>
+	<main>
+		<!--カテゴリー-->
+		<div class="tab">
+			<!-- ラジオボタン（表示制御のキーになる） -->
+			<!-- 直前に押されていたボタンを呼び出す -->
+			<c:forEach var="category" items="${categoryList}" varStatus="status">
+				<input type="radio" name="tab" class="tab-item" id="tab${status.index}" ${status.index == 0 ? "checked" : ""}>
+			</c:forEach>
+			<div class="tab-wrapper">
+				<!-- ラベル（横スクロール） -->
+				<div class="tab-labels">
+					<c:forEach var="category" items="${categoryList}" varStatus="status">
+						<label for="tab${status.index}"><c:out value="${category}" /></label>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="tab-contents">
+				<c:if test="${not empty productInfo}">
+					<c:forEach var="product" items="${productInfo}">
+						<div class="order_row hidden-row" data-category="<c:out value='${product.category_name}'/>">
+							<div class="menu">
+							<c:if test="${product.product_display_flag == 1}">
+								<li>
+									<div class="menu-row">
+										<div class="break-word bold-text"><c:out value="${product.product_name}" /></div>
+										<c:if test="${product.product_stock > 0}">
+											<%-- 在庫がある場合は商品詳細画面へ遷移 --%>
+											<form action="${Action.DETAILS_ADD}" method="post">
+												<input type="hidden" name="from" value="OrderMenu.jsp">
+												<input type="hidden" name="${Param.PRODUCT_ID}" value="<c:out value="${product.product_id}" />">
+												<input type="hidden" name="${Param.PRODUCT_NAME}" value="<c:out value="${product.product_name}" />">
+												<input type="hidden" name="${Param.PRODUCT_PRICE}" value="<c:out value="${product.product_price}" />">
+												<input type="hidden" name="${Param.CATEGORY_NAME}" value="<c:out value="${product.category_name}" />"> 
+												<input type="image" src="${pageContext.request.contextPath}/image/plusButton.png" alt="商品詳細画面へ遷移する">
+											</form>
+										</c:if>
+										<c:if test="${product.product_stock <= 0}">
+											<img src="${pageContext.request.contextPath}/image/soldout.png" alt="売り切れ" style="width: 55px; height: auto;">
+										</c:if>
+									</div>
+									<p><c:out value="${product.product_price}" />円</p>
+								</li>
+								</c:if>
+							</div>
+							</div>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty productInfo}">
+				商品情報がありません。
+				</c:if>
+			</div>
+		</div>
+	</main>
+	<!-- jsにjspのcategoryListを渡す -->
+	<script>
+		const categoryList=[
+			<c:forEach items="${categoryList}" var="cat" varStatus="loop">
+			'<c:out value="${cat}"/>'<c:if test="${!loop.last}">,</c:if>
+			</c:forEach>
+			];
+	</script>
+	<script
+		src="${pageContext.request.contextPath}/JavaScript/OrderMenu/ordermenu.js"></script>
+	<footer class="footer-buttons">
+		<div class="table-number"><c:out value="${sessionScope.tableNumber}" />卓</div>
+		<div class="footer-wrapper">
+			<!--ボタン-->
+			<!--注文リストへ遷移-->
+			<form action="${Action.LIST}" method="post">
+				<button class="fixed-right-button">
+					<img src="${pageContext.request.contextPath}/image/cart.png" alt="注文リストのボタン"> 注文リスト
+				</button>
+			</form>
+			<!--履歴・お会計へ遷移-->
+			<form action="${Action.HISTORY}" method="post">
+				<button class="fixed-left-button">
+					<img src="${pageContext.request.contextPath}/image/menuhistory.png" alt="履歴・お会計のボタン"> 履歴・お会計
+				</button>
+			</form>
+		</div>
+	</footer>
+</body>
+</html>

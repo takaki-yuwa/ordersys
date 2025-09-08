@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/*全てのHTMLで使うCSSのリンク*/
+@import url('footer.css');
+@import url('header.css');
+@import url('textstyle.css');
+@import url('commonbutton.css');
+
+/*画像サイズ自動調整*/
+img{
+	max-width: 100%;
+	height:auto;
+	max-height:100%;
+}
+/*ヘッダーの分間隔をあける*/
+/*<main>の表示範囲*/
+.default-main{
+	margin-top:90px;
+	margin-bottom:90px;
+	padding:20px;
+}
+/*<main>の表示範囲(詳細画面のトッピング)*/
+.details-main{
+	margin-top:90px;
+	margin-bottom:180px;
+	padding:20px;
+}
+
+.history-main{
+	margin-top:-30px;
+	margin-bottom:180px;
+	padding:20px;
+}
+
+.list-main{
+	margin-top:0px;
+	margin-bottom:180px;
+	padding:20px;
+}
+
+body{
+	padding-top:90px;
+	background-color:seashell;
+}
+
+html{
+	scroll-padding-top: 160px;
+}
+
+/*テキストに下線部をつける*/
+.underline-text{
+	text-decoration:underline;
+}
+
+/*テキストを太文字にする*/
+.bold-text{
+	font-weight: bold;
+}

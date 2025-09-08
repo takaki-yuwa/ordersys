@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--サイトのサイズ自動調整-->
+<meta name="viewport"
+	content="width=device-width,height=device-height,initial-scale=1.0">
+<title>会計確定画面</title>
+<!--.cssの呼び出し-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Accounting/accounting.css">
+<link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+	<!--ヘッダー(店の名前)-->
+	<header class="header-storename">
+		<div class="header-image-wrapper">
+			<img src="${pageContext.request.contextPath}/image/木目3.jpg" alt="背景" class="header-background-image">
+			<img src="${pageContext.request.contextPath}/image/biglogo.png" alt="店の名前" class="header-image">
+		</div>
+	</header>
+	<main>
+		<div class="center-container">
+			<div class="square-box">
+				<p class="center-text">会計が確定されました</p>
+				<p class="center-text">ご利用ありがとうございます</p>
+				<span class="bold-text size-text">${accountingInfo.tableNo}卓</span>
+				<span class="underline-text bold-text size-text">合計:${accountingInfo.totalPrice}円(税込)</span>
+			</div>
+		</div>
+		<p class="center-text">レジにてお支払いください</p>
+		<p class="center-text">またのご利用をお待ちしております</p>
+	</main>
+	<uji:dispatch />
+	<uji:resourceText id="uji.disableBack" />
+</body>
+</html>
