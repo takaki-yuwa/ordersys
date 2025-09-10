@@ -63,7 +63,13 @@ public class OrderHistoryDAO {
 			}
 
 		} catch (SQLException e) {
+			System.err.println("データベースの注文情報取得中にエラーが発生しました。");
 			System.err.println("注文情報取得中にSQLエラーが発生しました: " + e.getMessage());
+			System.err.println("SQL状態コード: " + e.getSQLState());
+			System.err.println("エラーコード: " + e.getErrorCode());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println("注文情報取得中に予期しないエラーが発生しました。");
 			e.printStackTrace();
 		}
 

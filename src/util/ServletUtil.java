@@ -108,6 +108,7 @@ public class ServletUtil {
 	// エラー画面に飛ばす
 	public static void forwardError(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("現在の画面：エラー画面");
 		request.getRequestDispatcher(Path.ERROR).forward(request, response);
 	}
 

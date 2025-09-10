@@ -18,3 +18,4 @@ closePopupButton.addEventListener('click', () => {
 	popupOverlay.classList.remove('show');
 	popupContent.classList.remove('show');
 });
+

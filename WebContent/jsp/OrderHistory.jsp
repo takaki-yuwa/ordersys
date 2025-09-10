@@ -31,7 +31,7 @@
 		<!--注文履歴を取得-->
 		<c:set var="orderHistory" value="${orderHistoryInfo}" />
 
-		<div class="menu">
+		<div class="menu" id="order-history-container">
 			<c:if test="${not empty orderHistory}">
 				<!-- 合計値の初期化 -->
 				<c:set var="iTotalQuantity" value="0" />

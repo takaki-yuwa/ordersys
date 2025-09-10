@@ -73,6 +73,7 @@
 						<!-- ボタンを横並びに配置 -->
 						<div class="order-item buttons-container">
 							<!-- 変更ボタン -->
+							<c:if test="${category_name == 'お好み焼き' || category_name == 'もんじゃ焼き'}">
 							<form action="${pageContext.request.contextPath}/${Action.DETAILS_CHANGE}" method="post">
 								<input type="hidden" name="from" value="OrderList.jsp">
 								<input type="hidden" name="${Param.ORDER_ID}" value="<c:out value='${order_id}' />">
@@ -95,6 +96,7 @@
 								</c:if>
 								<button class="change-btn">変更</button>
 							</form>
+							</c:if>
 							<!-- 増減ボタンを追加（トッピングに関係なく表示） -->
 							<div class="quantity-buttons">
 								<button type="button" name="quantity" value="<c:out value='${product_quantity - 1}' />" class="decrease-btn" id="decrement-<c:out value='${order_id}' />"></button>

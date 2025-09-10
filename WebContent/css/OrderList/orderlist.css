@@ -72,9 +72,11 @@
 /* ボタンの横並びを調整 */
 .buttons-container {
     display: flex;
-    justify-content: space-between;  /* ボタン間に間隔をつける */
-    align-items: center;  /* ボタンを同じ高さに揃える */
-    width: 100%;  /* li要素の幅に合わせる */
+    align-items: center;
+    justify-content: flex-start; /* 左寄せ */
+    gap: 10px; /* 変更ボタンと増減ボタンの間隔 */
+    width: 100%;
+    position: relative; /* 相対位置を設定 */
 }
 
 /* 変更ボタン */
@@ -95,8 +97,10 @@
 
 /* 増減ボタンのスタイル */
 .quantity-buttons {
+    margin-left: auto; /* 左の余白を自動で埋めて右端に配置 */
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 .decrease-btn, .increase-btn {

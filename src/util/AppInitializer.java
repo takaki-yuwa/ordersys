@@ -45,6 +45,8 @@ public class AppInitializer implements ServletContextListener {
 		paramMap.put("TOPPING_NAME_ATTR", ServletUtil.Param.TOPPING_NAME_ATTR);
 		paramMap.put("TOPPING_PRICE_ATTR", ServletUtil.Param.TOPPING_PRICE_ATTR);
 		paramMap.put("TOPPING_QUANTITY_ATTR", ServletUtil.Param.TOPPING_QUANTITY_ATTR);
+		paramMap.put("TOPPING_ID_", ServletUtil.Param.TOPPING_ID_);
+		paramMap.put("TOPPING_QUANTITY_", ServletUtil.Param.TOPPING_QUANTITY_);
 		paramMap.put("SUBTOTAL", ServletUtil.Param.SUBTOTAL);
 		paramMap.put("SUBTOTAL_ATTR", ServletUtil.Param.SUBTOTAL_ATTR);
 		paramMap.put("TOTAL", ServletUtil.Param.TOTAL);

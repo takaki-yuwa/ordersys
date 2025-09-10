@@ -16,7 +16,7 @@ public class ToppingListDAO {
 		String selectToppingSql = "SELECT tp.topping_id, tp.topping_name, tp.topping_price, tp.topping_stock, tp.topping_display_flag " +
 				"FROM topping tp " +
 				"INNER JOIN product_topping pt ON tp.topping_id = pt.topping_id " +
-				"WHERE pt.product_id = ?";
+				"WHERE pt.product_id = ? AND tp.topping_delete_flag = 1";
 		try (Connection connection = DBUtil.getConnection();
 				PreparedStatement selectStmt = connection.prepareStatement(selectToppingSql)) {
 

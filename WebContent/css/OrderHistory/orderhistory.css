@@ -47,50 +47,61 @@ main {
     padding: 10px 0;
 }
 
-.order-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
+/* 各行（データ行・ヘッダー行）をテーブルとして扱う */
+.order-item,
+.order-item-header {
+    display: table;
+    table-layout: fixed; /* 列幅を固定して揃える */
+    width: 100%;
+    border-collapse: collapse; /* 線をきれいに */
     border-bottom: 1px solid #ccc;
 }
 
-/* ヘッダーの各列だけ中央揃えにする */
+/* 各セルをテーブルセルにする */
+.order-item-left,
+.order-item-center,
+.order-item-right,
 .order-item-header .order-item-left,
 .order-item-header .order-item-center,
 .order-item-header .order-item-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 8px;
+    word-break: break-word; /* 折り返し */
+    overflow-wrap: break-word; /* 現在の標準 */
+    white-space: normal;    /* 折り返し有効 */
+    border-left: 1px solid #ccc; /* 区切り線を追加 */
 }
 
-/* 通常データ行は既存のままでOK */
-.order-item-left {
-    flex: 2;
-    text-align: left;
-    padding-right: 10px;
-}
 
-.order-item-center {
-    flex: 1;
-    text-align: center;
-    border-left: 1px solid #ccc;
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
+.order-item-left,
+.order-item-center,
 .order-item-right {
-    flex: 1;
-    text-align: right;
-    border-left: 1px solid #ccc;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    overflow-wrap: anywhere;  /* どこでも折り返す（新しめのプロパティ） */
 }
 
+/* 列幅の割合を指定 */
+.order-item-left,
+.order-item-header .order-item-left {
+    width: 60%; /* 商品名など長い部分 */
+    text-align: left;
+    border-left:none;
+}
+
+.order-item-center,
+.order-item-header .order-item-center {
+    width: 20%; /* 数量 */
+    text-align: center;
+}
+
+.order-item-right,
+.order-item-header .order-item-right {
+    width: 20%; /* 金額 */
+    text-align: right;
+}
+
+/* ヘッダー専用の見た目 */
 .order-item-header {
     border-bottom: 2px solid #000;
     background-color: #FFE2C5;
@@ -99,7 +110,42 @@ main {
     position: sticky;
 }
 
+/* ヘッダーのセルを縦横中央揃えにする */
+.order-item-header .order-item-left,
+.order-item-header .order-item-center,
+.order-item-header .order-item-right {
+    text-align: center;       /* 横方向中央揃え */
+    vertical-align: middle;   /* 縦方向中央揃え（既存） */
+}
+
+/* 商品名セル */
+.order-item-left {
+    width: 60%;
+    text-align: left;
+    border-left: none;
+    white-space: normal;         /* 折り返し許可 */
+    word-break: break-all;       /* 長い文字列も折り返す */
+    overflow-wrap: anywhere;     /* どこでも折り返す */
+}
+
+/* 商品名セル内の div と strong をブロック化して幅100% */
+.order-item-left > div {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.order-item-left > div > strong {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* 商品名部分で2行目以降（トッピングなど）に余白を付与 */
 .order-item-left div:not(:first-child) {
     margin-left: 10px;
 }
-@charset "UTF-8";

@@ -28,13 +28,13 @@ public class OrderCompletedDAO {
 				}
 			}
 		} catch (SQLException e) {
-			System.err.println("データベースに情報登録中にエラーが発生しました。");
-			System.err.println("情報登録中にSQLエラーが発生しました: " + e.getMessage());
+			System.err.println("データベースに商品詳細情報登録中にエラーが発生しました。");
+			System.err.println("商品詳細情報登録中にSQLエラーが発生しました: " + e.getMessage());
 			System.err.println("SQL状態コード: " + e.getSQLState());
 			System.err.println("エラーコード: " + e.getErrorCode());
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("情報登録中に予期しないエラーが発生しました。");
+			System.err.println("商品詳細情報登録中に予期しないエラーが発生しました。");
 			e.printStackTrace();
 		}
 
@@ -60,13 +60,13 @@ public class OrderCompletedDAO {
 			rowsAffected = insertStmt.executeBatch();
 
 		} catch (SQLException e) {
-			System.err.println("データベースに情報登録中にエラーが発生しました。");
-			System.err.println("情報登録中にSQLエラーが発生しました: " + e.getMessage());
+			System.err.println("データベースに注文詳細情報登録中にエラーが発生しました。");
+			System.err.println("注文詳細情報登録中にSQLエラーが発生しました: " + e.getMessage());
 			System.err.println("SQL状態コード: " + e.getSQLState());
 			System.err.println("エラーコード: " + e.getErrorCode());
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("情報登録中に予期しないエラーが発生しました。");
+			System.err.println("注文詳細情報登録中に予期しないエラーが発生しました。");
 			e.printStackTrace();
 		}
 
@@ -98,13 +98,13 @@ public class OrderCompletedDAO {
 			rowsAffected = insertStmt.executeBatch();
 
 		} catch (SQLException e) {
-			System.err.println("データベースに情報登録中にエラーが発生しました。");
-			System.err.println("情報登録中にSQLエラーが発生しました: " + e.getMessage());
+			System.err.println("データベースにトッピング詳細情報登録中にエラーが発生しました。");
+			System.err.println("トッピング詳細情報登録中にSQLエラーが発生しました: " + e.getMessage());
 			System.err.println("SQL状態コード: " + e.getSQLState());
 			System.err.println("エラーコード: " + e.getErrorCode());
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("情報登録中に予期しないエラーが発生しました。");
+			System.err.println("トッピング詳細情報登録中に予期しないエラーが発生しました。");
 			e.printStackTrace();
 		}
 		boolean success = rowsAffected.length == 0 || Arrays.stream(rowsAffected).anyMatch(count -> count > 0);
@@ -143,13 +143,13 @@ public class OrderCompletedDAO {
 			updateStmt.executeBatch();
 
 		} catch (SQLException e) {
-			System.err.println("データベースに情報更新中にエラーが発生しました。");
-			System.err.println("情報更新中にSQLエラーが発生しました: " + e.getMessage());
+			System.err.println("データベースの商品在庫更新中にエラーが発生しました。");
+			System.err.println("商品在庫更新中にSQLエラーが発生しました: " + e.getMessage());
 			System.err.println("SQL状態コード: " + e.getSQLState());
 			System.err.println("エラーコード: " + e.getErrorCode());
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("情報更新中に予期しないエラーが発生しました。");
+			System.err.println("商品在庫更新中に予期しないエラーが発生しました。");
 			e.printStackTrace();
 		}
 	}
@@ -176,13 +176,13 @@ public class OrderCompletedDAO {
 			System.out.println("更新件数: " + java.util.Arrays.toString(updateCounts));
 
 		} catch (SQLException e) {
-			System.err.println("データベースに情報更新中にエラーが発生しました。");
-			System.err.println("情報更新中にSQLエラーが発生しました: " + e.getMessage());
+			System.err.println("データベースのトッピング在庫更新中にエラーが発生しました。");
+			System.err.println("トッピング在庫更新中にSQLエラーが発生しました: " + e.getMessage());
 			System.err.println("SQL状態コード: " + e.getSQLState());
 			System.err.println("エラーコード: " + e.getErrorCode());
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("情報更新中に予期しないエラーが発生しました。");
+			System.err.println("トッピング在庫更新中に予期しないエラーが発生しました。");
 			e.printStackTrace();
 		}
 	}

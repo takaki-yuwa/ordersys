@@ -73,10 +73,6 @@ public class OrderMenuServlet extends HttpServlet {
 			session.setAttribute(ServletUtil.Param.TABLE_ID, tableId);
 			session.setAttribute(ServletUtil.Param.SESSION_STATUS, sessionStatus);
 
-			System.out.println("卓番：" + tableId);
-			System.out.println("セッションID：" + sessionId);
-			System.out.println("セッションの状態：" + sessionStatus);
-
 			// 更新後は一覧画面にリダイレクト（PRGパターン推奨）
 			response.sendRedirect(request.getContextPath() + "/OrderMenu");
 

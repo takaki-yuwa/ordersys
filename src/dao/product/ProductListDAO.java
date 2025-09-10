@@ -13,7 +13,7 @@ import util.DBUtil;
 public class ProductListDAO {
 	public List<ProductInfo> selectProductList() {
 		List<ProductInfo> productInfoList = new ArrayList<>();
-		String selectProductSql = "SELECT * FROM product";
+		String selectProductSql = "SELECT * FROM product WHERE product_delete_flag = 1";
 		try (Connection connection = DBUtil.getConnection();
 				PreparedStatement selectStmt = connection.prepareStatement(selectProductSql)) {
 			try (ResultSet resultSet = selectStmt.executeQuery()) {

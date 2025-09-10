@@ -39,10 +39,12 @@ public class OrderCompletedServlet extends HttpServlet {
 					topping_quantities[i] = Arrays.copyOf(topping_quantity, topping_quantity.length);
 				} else {
 					topping_quantities[i] = new String[0]; // トッピングなしの場合は空配列
+					System.out.println("トッピングがありません");
 				}
 
 				if (topping_ids[i] == null) {
 					topping_ids[i] = new String[0]; // トッピングが存在しない場合も空配列
+					System.out.println("トッピングが存在しません");
 				}
 			}
 
@@ -67,6 +69,7 @@ public class OrderCompletedServlet extends HttpServlet {
 
 			if (success) {
 				System.out.println("現在の画面：注文完了画面");
+				request.getSession().removeAttribute(ServletUtil.Attr.LIST);
 				ServletUtil.forward(request, response, ServletUtil.Path.COMPLETED);
 			} else {
 				ServletUtil.forwardError(request, response);
