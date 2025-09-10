@@ -58,7 +58,8 @@ public class OrderListServlet extends HttpServlet {
 				String category_name = request.getParameter(ServletUtil.Param.CATEGORY_NAME);
 				int product_price = ServletUtil.parseOrDefault(request.getParameter(ServletUtil.Param.PRODUCT_PRICE), 0);
 				int menu_quantity = 1;
-				int menu_stock = 20;
+				int menu_stock = ServletUtil.parseOrDefault(request.getParameter(ServletUtil.Param.PRODUCT_STOCK), 0);
+				System.out.println("商品在庫：" + menu_stock);
 
 				// トッピング情報
 				int[] topping_id_arr = ServletUtil.safeParseIntArray(request.getParameterValues(ServletUtil.Param.TOPPING_ID));

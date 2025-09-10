@@ -57,6 +57,7 @@
 												<input type="hidden" name="${Param.PRODUCT_NAME}" value="<c:out value="${product.product_name}" />">
 												<input type="hidden" name="${Param.PRODUCT_PRICE}" value="<c:out value="${product.product_price}" />">
 												<input type="hidden" name="${Param.CATEGORY_NAME}" value="<c:out value="${product.category_name}" />"> 
+												<input type="hidden" name="${Param.PRODUCT_STOCK}" value="<c:out value="${product.product_stock}" />">
 												<input type="image" src="${pageContext.request.contextPath}/image/plusButton.png" alt="商品詳細画面へ遷移する">
 											</form>
 										</c:if>

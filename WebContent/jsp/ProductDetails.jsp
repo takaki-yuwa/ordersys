@@ -156,6 +156,7 @@
 					<input type="hidden" name="${Param.PRODUCT_NAME}" value="<c:out value='${addProductInfo.product_name}' />">
 					<input type="hidden" name="${Param.CATEGORY_NAME}" value="<c:out value='${addProductInfo.category_name}' />">
 					<input type="hidden" name="${Param.PRODUCT_PRICE}" value="<c:out value='${addProductInfo.product_price}' />">
+					<input type="hidden" name="${Param.PRODUCT_STOCK}" value="<c:out value='${addProductInfo.product_stock}' />">
 					<c:forEach var="topping" items="${toppingInfo}" varStatus="status">
 						<input type="hidden" name="${Param.TOPPING_ID}" value="<c:out value='${topping.topping_id}' />">
 						<input type="hidden" name="${Param.TOPPING_NAME}" value="<c:out value='${topping.topping_name}' />">

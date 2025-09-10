@@ -113,34 +113,24 @@ public class OrderCompletedDAO {
 
 	//商品在庫更新
 	public void updateProductStock(Connection connection, String[] product_ids, String[] product_quantities) {
-		String selectStockSql = "SELECT product_stock FROM product WHERE product_id = ?";
-		String updateStockSql = "UPDATE product SET product_stock = ? WHERE product_id = ?";
-		try (PreparedStatement selectStmt = connection.prepareStatement(selectStockSql);
-				PreparedStatement updateStmt = connection.prepareStatement(updateStockSql)) {
+		String updateStockSql = "UPDATE product SET product_stock = product_stock - ? WHERE product_id = ? AND product_stock >= ?";
+		try (PreparedStatement updateStmt = connection.prepareStatement(updateStockSql)) {
 			for (int i = 0; i < product_ids.length; i++) {
 				int product_id = Integer.parseInt(product_ids[i]);
 				int quantity = Integer.parseInt(product_quantities[i]);
 
-				selectStmt.setInt(1, product_id);
-				try (ResultSet resultSet = selectStmt.executeQuery()) {
-					if (resultSet.next()) {
-						int currentStock = resultSet.getInt("product_stock");
-
-						int newStock = currentStock - quantity;
-						if (newStock < 0) {
-							newStock = 0;
-						}
-
-						updateStmt.setInt(1, newStock);
-						updateStmt.setInt(2, product_id);
-						updateStmt.addBatch();
-					} else {
-						System.out.println("商品ID " + product_id + " の在庫が見つかりません。");
-					}
+				if (quantity <= 0) {
+					continue;
 				}
+
+				updateStmt.setInt(1, quantity);
+				updateStmt.setInt(2, product_id);
+				updateStmt.setInt(3, quantity);
+				updateStmt.addBatch();
 			}
 
-			updateStmt.executeBatch();
+			int[] updateCounts = updateStmt.executeBatch();
+			System.out.println("更新件数: " + java.util.Arrays.toString(updateCounts));
 
 		} catch (SQLException e) {
 			System.err.println("データベースの商品在庫更新中にエラーが発生しました。");
