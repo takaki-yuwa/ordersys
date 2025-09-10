@@ -28,15 +28,24 @@ public class OrderMenuServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			String sessionNumber = (String) session.getAttribute(ServletUtil.Param.SESSION_ID);
 			String tableNumber = (String) session.getAttribute(ServletUtil.Param.TABLE_ID);
+			String form = (String) session.getAttribute(ServletUtil.Param.FORM);
 
+			int sessionId = 0;
 			// tableNumberまたはsessionNumberがnullの場合はデフォルト値0を設定（またはエラー処理を行う）
 			if (ServletUtil.isNullOrEmpty(tableNumber) || ServletUtil.isNullOrEmpty(sessionNumber)) {
 				ServletUtil.forwardError(request, response);
 				return;
+			} else {
+				sessionId = ServletUtil.parseOrDefault(sessionNumber, 0);
 			}
 
 			// 商品リストを取得
 			ProductListDAO dao = new ProductListDAO();
+			//OrderState.jspからの遷移ならDBの人数を更新する
+			if (ServletUtil.Value.STATE.equals(form)) {
+				int gustCount = ServletUtil.parseOrDefault((String) session.getAttribute(ServletUtil.Param.GUEST_COUNT), 0);
+				dao.updateGuestCount(gustCount, sessionId);
+			}
 			List<ProductInfo> productInfo = dao.selectProductList();
 
 			// 商品リストをリクエスト属性にセット
@@ -66,12 +75,21 @@ public class OrderMenuServlet extends HttpServlet {
 			String sessionId = request.getParameter(ServletUtil.Param.SESSION_ID);
 			String tableId = request.getParameter(ServletUtil.Param.TABLE_ID);
 			String sessionStatus = request.getParameter(ServletUtil.Param.SESSION_STATUS);
+			String form = request.getParameter(ServletUtil.Param.FORM);
 
 			//セッションに保存
 			HttpSession session = request.getSession();
 			session.setAttribute(ServletUtil.Param.SESSION_ID, sessionId);
 			session.setAttribute(ServletUtil.Param.TABLE_ID, tableId);
 			session.setAttribute(ServletUtil.Param.SESSION_STATUS, sessionStatus);
+			session.setAttribute(ServletUtil.Param.FORM, form);
+			//OrderState.jspからの遷移ならセッションに人数を保存する
+			if (ServletUtil.Value.STATE.equals(form)) {
+				String guestCount = request.getParameter(ServletUtil.Param.GUEST_COUNT);
+
+				System.out.println("人数：" + guestCount);
+				session.setAttribute(ServletUtil.Param.GUEST_COUNT, guestCount);
+			}
 
 			// 更新後は一覧画面にリダイレクト（PRGパターン推奨）
 			response.sendRedirect(request.getContextPath() + "/OrderMenu");

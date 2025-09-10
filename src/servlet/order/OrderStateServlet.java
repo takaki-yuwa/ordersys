@@ -27,19 +27,26 @@ public class OrderStateServlet extends HttpServlet {
 
 			//状態の更新と情報の取得
 			OrderStateDAO dao = new OrderStateDAO();
+			String InitialState = dao.selectSessionStatus(table_token);
 			dao.updateSession(table_token);
 			TableInfo tableInfo = dao.selectTableInfo(table_token);
 
+			System.out.println("初期セッションの状態：" + InitialState);
 			System.out.println("セッションID：" + tableInfo.getSession_id());
 			System.out.println("卓番ID：" + tableInfo.getTable_id() + "卓");
 			System.out.println("セッションの状態：" + tableInfo.getSession_status());
-			System.out.println("現在の画面：注文開始画面");
 
 			//リクエスト属性にセット
 			request.setAttribute(ServletUtil.Attr.TABLE, tableInfo);
 
 			//次のページへフォワード
-			ServletUtil.forward(request, response, ServletUtil.Path.STATE);
+			if (ServletUtil.Status.INACTIVE.equals(InitialState)) {
+				System.out.println("現在の画面：注文開始画面");
+				ServletUtil.forward(request, response, ServletUtil.Path.STATE);
+			} else if (ServletUtil.Status.ACTIVE.equals(InitialState)) {
+				System.out.println("現在の画面：注文開始画面(人数入力スキップ)");
+				ServletUtil.forward(request, response, ServletUtil.Path.SKIP_STATE);
+			}
 
 		} catch (Exception e) {
 

@@ -18,6 +18,7 @@ public class ServletUtil {
 	public static class Path {
 		public static final String ERROR = "/jsp/Error.jsp";
 		public static final String STATE = "/jsp/OrderState.jsp";
+		public static final String SKIP_STATE = "/jsp/SkipOrderState.jsp";
 		public static final String MENU = "/jsp/OrderMenu.jsp";
 		public static final String DETAILS = "/jsp/ProductDetails.jsp";
 		public static final String LIST = "/jsp/OrderList.jsp";
@@ -55,9 +56,11 @@ public class ServletUtil {
 
 	//共通パラメータ
 	public static class Param {
+		public static final String FORM = "form";
 		public static final String SESSION_ID = "sessionNumber";
 		public static final String TABLE_ID = "tableNumber";
 		public static final String SESSION_STATUS = "sessionStatus";
+		public static final String GUEST_COUNT = "gest_count";
 		public static final String ORDER_ID = "order_id";
 		public static final String ORDER_ID_ATTR = "order_id[]";
 		public static final String PRODUCT_ID = "product_id";
@@ -80,6 +83,17 @@ public class ServletUtil {
 		public static final String SUBTOTAL = "subtotal";
 		public static final String SUBTOTAL_ATTR = "subtotal[]";
 		public static final String TOTAL = "total";
+	}
+
+	public static class Value {
+		public static final String STATE = "State";
+		public static final String SKIP_STATE = "SkipState";
+	}
+
+	public static class Status {
+		public static final String ACTIVE = "active";
+		public static final String INACTIVE = "inactive";
+		public static final String CLOSED = "closed";
 	}
 
 	// キャッシュ制御ヘッダーを設定

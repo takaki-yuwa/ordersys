@@ -33,3 +33,55 @@
 .size-text{
 	font-size: 20pt;
 }
+
+/* 人数カウンター全体 */
+.people-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    gap: 20px;
+    font-size: 1.5rem;
+}
+
+/* ＋/－ボタン */
+.people-counter button {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.state-btn {
+    padding: 10px 20px;
+    background-color: green;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+.people-counter button:hover {
+    background-color: #ffb84d;
+}
+
+.people-counter button:active {
+    transform: scale(0.95);
+}
+
+/* 人数表示 */
+#people-count {
+    min-width: 40px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #444;
+}

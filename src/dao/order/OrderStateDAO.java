@@ -9,6 +9,35 @@ import model.table.TableInfo;
 import util.DBUtil;
 
 public class OrderStateDAO {
+	//セッションの状態取得
+	public String selectSessionStatus(String url_token) {
+		String selectStatusSql = "SELECT session_status FROM table_sessions WHERE url_token = ?";
+		String sessionStatus = null;
+		try (Connection connection = DBUtil.getConnection();
+				PreparedStatement selectStmt = connection.prepareStatement(selectStatusSql)) {
+
+			selectStmt.setString(1, url_token);
+
+			try (ResultSet rs = selectStmt.executeQuery()) {
+				if (rs.next()) {
+					sessionStatus = rs.getString("session_status");
+				}
+			}
+
+		} catch (SQLException e) {
+			System.err.println("データベースのセッションの状態を取得中にエラーが発生しました。");
+			System.err.println("セッションの状態を取得中にSQLエラーが発生しました: " + e.getMessage());
+			System.err.println("SQL状態コード: " + e.getSQLState());
+			System.err.println("エラーコード: " + e.getErrorCode());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println("セッションの状態を取得中に予期しないエラーが発生しました。");
+			e.printStackTrace();
+		}
+
+		return sessionStatus;
+	}
+
 	//情報取得
 	public TableInfo selectTableInfo(String url_token) {
 		String selectTableSql = "SELECT session_id,table_id,session_status FROM table_sessions WHERE url_token = ? AND session_status <> 'closed'";

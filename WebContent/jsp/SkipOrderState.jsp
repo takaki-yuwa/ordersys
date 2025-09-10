@@ -16,7 +16,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/OrderState/orderstate.css">
 <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
-<script src="${pageContext.request.contextPath}/JavaScript/OrderState/orderstate.js"></script>
+<script>
+	// ページ読み込み後 3秒で自動POST
+	window.onload = function() {
+		setTimeout(function() {
+			document.getElementById("autoForm").submit();
+		}, 3000); // 3秒後に送信
+	};
+</script>
 </head>
 <body>
 	<!--ヘッダー(店の名前)-->
@@ -36,26 +43,13 @@
 			</div>
 		</div>
 		<p class="center-text">いらっしゃいませ！</p>
-		<p class="center-text">人数を設定してください</p>
-
-		<!-- 人数入力 -->
-		<div class="people-counter">
-			<button type="button" id="decrease-btn">-</button>
-			<span id="people-count">1</span>
-			<button type="button" id="increase-btn">+</button>
-		</div>
-
-		<!-- 送信ボタン -->
-		<div class="center-container">
-			<form action="${Action.MENU}" method="post">
-				<input type="hidden" name="${Param.FORM}" value="${Value.STATE}">
-				<input type="hidden" name="${Param.SESSION_ID}" value="<c:out value='${tableInfo.session_id}' />">
-				<input type="hidden" name="${Param.TABLE_ID}" value="<c:out value='${tableInfo.table_id}' />">
-				<input type="hidden" name="${Param.SESSION_STATUS}" value="<c:out value='${tableInfo.session_status}' />">
-				<input type="hidden" name="${Param.GUEST_COUNT}" id="people-input" value="1">
-				<button class="state-btn">注文開始</button>
-			</form>
-		</div>
 	</main>
+	<!-- 自動でPOSTするフォーム -->
+	<form id="autoForm" action="${Action.MENU}" method="post">
+		<input type="hidden" name="${Param.FORM}" value="${Value.SKIP_STATE}">
+		<input type="hidden" name="${Param.SESSION_ID}" value="<c:out value='${tableInfo.session_id}' />"> 
+		<input type="hidden" name="${Param.TABLE_ID}" value="<c:out value='${tableInfo.table_id}' />"> 
+		<input type="hidden" name="${Param.SESSION_STATUS}" value="<c:out value='${tableInfo.session_status}' />">
+	</form>
 </body>
 </html>

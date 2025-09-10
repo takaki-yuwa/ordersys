@@ -41,4 +41,26 @@ public class ProductListDAO {
 
 		return productInfoList;
 	}
+
+	public void updateGuestCount(int guest, int sessionId) {
+		String updateGuestSql = "UPDATE table_sessions SET guest_count = ? WHERE session_id = ?";
+		try (Connection connection = DBUtil.getConnection();
+				PreparedStatement updateStmt = connection.prepareStatement(updateGuestSql)) {
+
+			updateStmt.setInt(1, guest);
+			updateStmt.setInt(2, sessionId);
+
+			updateStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.err.println("データベースの人数情報更新中にエラーが発生しました。");
+			System.err.println("人数情報更新中にSQLエラーが発生しました: " + e.getMessage());
+			System.err.println("SQL状態コード: " + e.getSQLState());
+			System.err.println("エラーコード: " + e.getErrorCode());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println("人数情報更新中に予期しないエラーが発生しました。");
+			e.printStackTrace();
+		}
+	}
 }

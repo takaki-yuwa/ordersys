@@ -25,9 +25,11 @@ public class AppInitializer implements ServletContextListener {
 
 		// Param を Map 化
 		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("FORM", ServletUtil.Param.FORM);
 		paramMap.put("SESSION_ID", ServletUtil.Param.SESSION_ID);
 		paramMap.put("TABLE_ID", ServletUtil.Param.TABLE_ID);
 		paramMap.put("SESSION_STATUS", ServletUtil.Param.SESSION_STATUS);
+		paramMap.put("GUEST_COUNT", ServletUtil.Param.GUEST_COUNT);
 		paramMap.put("ORDER_ID", ServletUtil.Param.ORDER_ID);
 		paramMap.put("ORDER_ID_ATTR", ServletUtil.Param.ORDER_ID_ATTR);
 		paramMap.put("PRODUCT_ID", ServletUtil.Param.PRODUCT_ID);
@@ -51,8 +53,19 @@ public class AppInitializer implements ServletContextListener {
 		paramMap.put("SUBTOTAL_ATTR", ServletUtil.Param.SUBTOTAL_ATTR);
 		paramMap.put("TOTAL", ServletUtil.Param.TOTAL);
 
+		Map<String, String> valueMap = new HashMap<>();
+		valueMap.put("STATE", ServletUtil.Value.STATE);
+		valueMap.put("SKIP_STATE", ServletUtil.Value.SKIP_STATE);
+
+		Map<String, String> statusMap = new HashMap<>();
+		statusMap.put("ACTIVE", ServletUtil.Status.ACTIVE);
+		statusMap.put("INACTIVE", ServletUtil.Status.INACTIVE);
+		statusMap.put("CLOSED", ServletUtil.Status.CLOSED);
+
 		// ApplicationScope に登録
 		sce.getServletContext().setAttribute("Action", actionMap);
 		sce.getServletContext().setAttribute("Param", paramMap);
+		sce.getServletContext().setAttribute("Value", valueMap);
+		sce.getServletContext().setAttribute("Status", statusMap);
 	}
 }
