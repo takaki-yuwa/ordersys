@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="Action" value="${applicationScope.Action}" scope="page" />
 <c:set var="Param" value="${applicationScope.Param}" scope="page" />
 <!DOCTYPE html>
@@ -95,7 +96,19 @@
 			<!--注文リストへ遷移-->
 			<form action="${Action.LIST}" method="post">
 				<button class="fixed-right-button">
-					<img src="${pageContext.request.contextPath}/image/cart.png" alt="注文リストのボタン"> 注文リスト
+					<img src="${pageContext.request.contextPath}/image/cart.png" alt="注文リストのボタン">
+					<c:if test="${empty sessionScope.orderListInfo}">
+					<div>
+						注文リスト
+					</div>
+					</c:if>
+					<!--注文リストが空でないときのみ注文件数を表示-->
+					<c:if test="${not empty sessionScope.orderListInfo}">
+					<div class="orderlist">
+						注文リスト
+						<span class="count">${fn:length(sessionScope.orderListInfo)}</span>
+					</div>
+					</c:if>
 				</button>
 			</form>
 			<!--履歴・お会計へ遷移-->

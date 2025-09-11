@@ -105,3 +105,23 @@ main{
 	cursor: pointer;
 	text-align: center;
 }
+
+/*注文リストの件数*/
+.count{
+	display: inline-block;
+	font-size: 14px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #fff5ee;
+	text-align: center;
+	line-height: 20px;
+	position: relative;
+	top: -55px;
+	right: 25px;
+}
+/*注文リストテキストの位置*/
+.orderlist{
+	position: relative;
+	left: 12px;
+}
