@@ -48,6 +48,9 @@
 							<div class="product-name"><c:out value="${product_name}" /></div>
 							<div class="product-price"><c:out value="${product_price}" />円</div>
 						</div> 
+						
+						<input type="hidden" id="productId-${order_id}" value="${product_id}">
+						
 						<!-- トッピングがある場合だけループ -->
 						<c:if test="${not empty orderlist.topping_id}">
 							<c:forEach var="topping_id" items="${orderlist.topping_id}" varStatus="topping">
@@ -88,10 +91,12 @@
 										<c:set var="topping_name" value="${orderlist.topping_name[topping.index]}" />
 										<c:set var="topping_price" value="${orderlist.topping_price[topping.index]}" />
 										<c:set var="topping_quantity" value="${orderlist.topping_quantity[topping.index]}" />
+										<c:set var="topping_stock" value="${orderlist.topping_stock[topping.index]}" />
 										<input type="hidden" name="${Param.TOPPING_ID_ATTR}" value="<c:out value='${topping_id}' />">
 										<input type="hidden" name="${Param.TOPPING_NAME_ATTR}" value="<c:out value='${topping_name}' />">
 										<input type="hidden" name="${Param.TOPPING_PRICE_ATTR}" value="<c:out value='${topping_price}' />">
 										<input type="hidden" name="${Param.TOPPING_QUANTITY_ATTR}" value="<c:out value='${topping_quantity}' />">
+										<input type="hidden" name="${Param.TOPPING_STOCK_ATTR}" value="<c:out value='${topping_stock}' />">
 									</c:forEach>
 								</c:if>
 								<button class="change-btn">変更</button>
@@ -190,7 +195,8 @@
 			    <c:forEach var="i" begin="0" end="${fn:length(orderlist.topping_id) - 1}" varStatus="loop">
 			      {
 			        id: "<c:out value='${orderlist.topping_id[i]}' />",
-			        quantity: <c:out value='${orderlist.topping_quantity[i]}' />
+			        quantity: <c:out value='${orderlist.topping_quantity[i]}' />,
+			        stock: <c:out value='${orderlist.topping_stock[i]}' />
 			      }<c:if test="${!loop.last}">,</c:if>
 			    </c:forEach>
 			</c:if>

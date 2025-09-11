@@ -40,9 +40,9 @@
 
 		<!-- 人数入力 -->
 		<div class="people-counter">
-			<button type="button" id="decrease-btn">-</button>
-			<span id="people-count">1</span>
-			<button type="button" id="increase-btn">+</button>
+			<button type="button" id="decrement-btn">-</button>
+			<span id="guest-count">1</span>
+			<button type="button" id="increment-btn">+</button>
 		</div>
 
 		<!-- 送信ボタン -->
@@ -52,7 +52,7 @@
 				<input type="hidden" name="${Param.SESSION_ID}" value="<c:out value='${tableInfo.session_id}' />">
 				<input type="hidden" name="${Param.TABLE_ID}" value="<c:out value='${tableInfo.table_id}' />">
 				<input type="hidden" name="${Param.SESSION_STATUS}" value="<c:out value='${tableInfo.session_status}' />">
-				<input type="hidden" name="${Param.GUEST_COUNT}" id="people-input" value="1">
+				<input type="hidden" name="${Param.GUEST_COUNT}" id="guest-input" value="1">
 				<button class="state-btn">注文開始</button>
 			</form>
 		</div>

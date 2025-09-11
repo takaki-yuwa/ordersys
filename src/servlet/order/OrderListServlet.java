@@ -66,6 +66,7 @@ public class OrderListServlet extends HttpServlet {
 				String[] topping_name_arr = request.getParameterValues(ServletUtil.Param.TOPPING_NAME);
 				int[] topping_price_arr = ServletUtil.safeParseIntArray(request.getParameterValues(ServletUtil.Param.TOPPING_PRICE));
 				int[] topping_quantity_arr = ServletUtil.safeParseIntArray(request.getParameterValues(ServletUtil.Param.TOPPING_QUANTITY));
+				int[] topping_stock_arr = ServletUtil.safeParseIntArray(request.getParameterValues(ServletUtil.Param.TOPPING_STOCK));
 
 				// menu_subtotal 計算（商品価格 + トッピング合計）
 				int subtotal = product_price;
@@ -87,6 +88,7 @@ public class OrderListServlet extends HttpServlet {
 						ServletUtil.toList(topping_name_arr),
 						ServletUtil.toList(topping_price_arr),
 						ServletUtil.toList(topping_quantity_arr),
+						ServletUtil.toList(topping_stock_arr),
 						subtotal // menu_subtotal に設定
 				));
 
@@ -100,6 +102,7 @@ public class OrderListServlet extends HttpServlet {
 				String[] topping_name_arr = request.getParameterValues(ServletUtil.Param.TOPPING_NAME_ATTR);
 				int[] topping_price_arr = ServletUtil.safeParseIntArray(request.getParameterValues(ServletUtil.Param.TOPPING_PRICE_ATTR));
 				int[] topping_quantity_arr = ServletUtil.safeParseIntArray(request.getParameterValues(ServletUtil.Param.TOPPING_QUANTITY_ATTR));
+				int[] topping_stock_arr = ServletUtil.safeParseIntArray(request.getParameterValues(ServletUtil.Param.TOPPING_STOCK_ATTR));
 
 				for (OrderListInfo order : orderList) {
 					if (order.getOrder_id() == order_id && order.getProduct_id() == product_id) {
@@ -107,6 +110,7 @@ public class OrderListServlet extends HttpServlet {
 						order.setTopping_name(ServletUtil.toList(topping_name_arr));
 						order.setTopping_price(ServletUtil.toList(topping_price_arr));
 						order.setTopping_quantity(ServletUtil.toList(topping_quantity_arr));
+						order.setTopping_stock(ServletUtil.toList(topping_stock_arr));
 
 						// menu_subtotal 更新
 						int subtotal = product_price;

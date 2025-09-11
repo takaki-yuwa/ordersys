@@ -14,11 +14,12 @@ public class OrderListInfo {
 	private List<String> topping_name;
 	private List<Integer> topping_price;
 	private List<Integer> topping_quantity;
+	private List<Integer> topping_stock;
 	private int menu_subtotal;
 
 	public OrderListInfo(int order_id, int product_id, String product_name, String category_name, int product_price, int product_quantity,
 			int product_stock, List<Integer> topping_id, List<String> topping_name, List<Integer> topping_price, List<Integer> topping_quantity,
-			int menu_subtotal) {
+			List<Integer> topping_stock, int menu_subtotal) {
 		this.setOrder_id(order_id);
 		this.setProduct_id(product_id);
 		this.setProduct_name(product_name);
@@ -30,6 +31,7 @@ public class OrderListInfo {
 		this.setTopping_name(topping_name);
 		this.setTopping_price(topping_price);
 		this.setTopping_quantity(topping_quantity);
+		this.setTopping_stock(topping_stock);
 		this.setMenu_subtotal(menu_subtotal);
 	}
 
@@ -91,6 +93,10 @@ public class OrderListInfo {
 		return topping_quantity;
 	}
 
+	public List<Integer> getTopping_stock() {
+		return topping_stock;
+	}
+
 	public int getMenu_subtotal() {
 		return menu_subtotal;
 	}
@@ -139,7 +145,12 @@ public class OrderListInfo {
 		this.topping_quantity = topping_quantity;
 	}
 
+	public void setTopping_stock(List<Integer> topping_stock) {
+		this.topping_stock = topping_stock;
+	}
+
 	public void setMenu_subtotal(int menu_subtotal) {
 		this.menu_subtotal = menu_subtotal;
 	}
+
 }

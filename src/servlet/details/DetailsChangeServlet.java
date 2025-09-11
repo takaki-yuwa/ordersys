@@ -33,6 +33,7 @@ public class DetailsChangeServlet extends HttpServlet {
 			String[] topping_name = request.getParameterValues(ServletUtil.Param.TOPPING_NAME_ATTR);
 			String[] t_price = request.getParameterValues(ServletUtil.Param.TOPPING_PRICE_ATTR);
 			String[] t_quantity = request.getParameterValues(ServletUtil.Param.TOPPING_QUANTITY_ATTR);
+			String[] t_stock = request.getParameterValues(ServletUtil.Param.TOPPING_STOCK_ATTR);
 			String subtotalstr = request.getParameter(ServletUtil.Param.SUBTOTAL);
 
 			if (ServletUtil.isNullOrEmpty(o_id) || ServletUtil.isNullOrEmpty(p_id)) {
@@ -49,14 +50,16 @@ public class DetailsChangeServlet extends HttpServlet {
 			int[] topping_id;
 			int[] topping_price;
 			int[] topping_quantity;
+			int[] topping_stock;
 			//int型[]への変換処理
 			topping_id = ServletUtil.safeParseIntArray(t_id);
 			topping_price = ServletUtil.safeParseIntArray(t_price);
 			topping_quantity = ServletUtil.safeParseIntArray(t_quantity);
+			topping_stock=ServletUtil.safeParseIntArray(t_stock);
 
 			//詳細変更リストオブジェクトの作成
 			DetailsChangeInfo detailsChangeInfo = new DetailsChangeInfo(order_id, product_id, product_name, category_name, product_price,
-					topping_id, topping_name, topping_price, topping_quantity, subtotal);
+					topping_id, topping_name, topping_price, topping_quantity, topping_stock, subtotal);
 
 			// トッピング情報の取得
 			ToppingListDAO dao = new ToppingListDAO();

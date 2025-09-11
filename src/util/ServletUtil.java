@@ -74,10 +74,12 @@ public class ServletUtil {
 		public static final String TOPPING_NAME = "topping_name";
 		public static final String TOPPING_PRICE = "topping_price";
 		public static final String TOPPING_QUANTITY = "topping_quantity";
+		public static final String TOPPING_STOCK = "topping_stock";
 		public static final String TOPPING_ID_ATTR = "topping_id[]";
 		public static final String TOPPING_NAME_ATTR = "topping_name[]";
 		public static final String TOPPING_PRICE_ATTR = "topping_price[]";
 		public static final String TOPPING_QUANTITY_ATTR = "topping_quantity[]";
+		public static final String TOPPING_STOCK_ATTR = "topping_stock[]";
 		public static final String TOPPING_ID_ = "topping_id_";
 		public static final String TOPPING_QUANTITY_ = "topping_quantity_";
 		public static final String SUBTOTAL = "subtotal";

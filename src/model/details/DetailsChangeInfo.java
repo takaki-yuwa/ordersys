@@ -10,10 +10,11 @@ public class DetailsChangeInfo {
 	private String[] topping_name;
 	private int[] topping_price;
 	private int[] topping_quantity;
+	private int[] topping_stock;
 	private int subtotal;
 
 	public DetailsChangeInfo(int order_id, int product_id, String product_name, String category_name, int product_price, int[] topping_id,
-			String[] topping_name, int[] topping_price, int[] topping_quantity, int subtotal) {
+			String[] topping_name, int[] topping_price, int[] topping_quantity, int[] topping_stock, int subtotal) {
 		this.setOrder_id(order_id);
 		this.setProduct_id(product_id);
 		this.setProduct_name(product_name);
@@ -23,6 +24,7 @@ public class DetailsChangeInfo {
 		this.setTopping_name(topping_name);
 		this.setTopping_price(topping_price);
 		this.setTopping_quantity(topping_quantity);
+		this.setTopping_stock(topping_stock);
 		this.setSubtotal(subtotal);
 
 	}
@@ -61,6 +63,10 @@ public class DetailsChangeInfo {
 
 	public int[] getTopping_quantity() {
 		return topping_quantity;
+	}
+	
+	public int[] getTopping_stock() {
+		return topping_stock;
 	}
 
 	public int getSubtotal() {
@@ -101,6 +107,10 @@ public class DetailsChangeInfo {
 
 	public void setTopping_quantity(int[] topping_quantity) {
 		this.topping_quantity = topping_quantity;
+	}
+	
+	public void setTopping_stock(int[] topping_stock) {
+		this.topping_stock = topping_stock;
 	}
 
 	public void setSubtotal(int subtotal) {

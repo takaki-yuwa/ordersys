@@ -28,6 +28,7 @@ public class OrderStateServlet extends HttpServlet {
 			//状態の更新と情報の取得
 			OrderStateDAO dao = new OrderStateDAO();
 			String InitialState = dao.selectSessionStatus(table_token);
+			//最初のログイン時のみDaoの更新を行う
 			if (ServletUtil.Status.INACTIVE.equals(InitialState)) {
 				dao.updateSession(table_token);
 			}

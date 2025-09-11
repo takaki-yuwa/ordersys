@@ -162,6 +162,7 @@
 						<input type="hidden" name="${Param.TOPPING_NAME}" value="<c:out value='${topping.topping_name}' />">
 						<input type="hidden" name="${Param.TOPPING_PRICE}" value="<c:out value='${topping.topping_price}' />">
 						<input type="hidden" name="${Param.TOPPING_QUANTITY}" id="topping-<c:out value='${topping.topping_id}' />" value="0">
+						<input type="hidden" name="${Param.TOPPING_STOCK}" value="<c:out value='${topping.topping_stock}' />">
 					</c:forEach>
 					<input type="hidden" name="${Param.TOTAL}" id="input-total" value=""> 
 					<img src="${pageContext.request.contextPath}/image/addCart.png"alt="追加のボタン"> 追加
@@ -183,11 +184,13 @@
 						<c:set var="topping_name" value="${changeProductInfo.topping_name[status.index]}" />
 						<c:set var="topping_price" value="${changeProductInfo.topping_price[status.index]}" />
 						<c:set var="topping_quantity" value="${changeProductInfo.topping_quantity[status.index]}" />
+						<c:set var="topping_stock" value="${changeProductInfo.topping_stock[status.index]}" />
 						<input type="hidden" name="${Param.TOPPING_ID_ATTR}" value="<c:out value='${topping_id}' />">
 						<input type="hidden" name="${Param.TOPPING_NAME_ATTR}" value="<c:out value='${topping_name}' />">
 						<input type="hidden" name="${Param.TOPPING_PRICE_ATTR}" value="<c:out value='${topping_price}' />">
 						<%--valueに変更していない個数がリセットされないように取得した${topping_quantity}を入れる--%>
 						<input type="hidden" name="${Param.TOPPING_QUANTITY_ATTR}" id="topping-<c:out value='${topping_id}' />" value="<c:out value='${topping_quantity}' />">
+						<input type="hidden" name="${Param.TOPPING_STOCK_ATTR}" value="<c:out value='${topping_stock}' />">
 					</c:forEach>
 					<input type="hidden" name="${Param.TOTAL}" id="input-total" value=""> 
 					<img src="${pageContext.request.contextPath}/image/changeCart.png" alt="変更のボタン"> 変更

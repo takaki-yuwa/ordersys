@@ -25,7 +25,15 @@ function updateOrderState(menuId, menuQuantity, menuStock, _menuSubtotal, toppin
 		const newDecrementBtn = document.getElementById(`decrement-${menuId}`);
 
 		newIncrementBtn.addEventListener('click', () => {
-			if (orderstate.count < menuStock) {
+			const productElem=document.getElementById(`productId-${menuId}`);
+			if(!productElem) return;
+			
+			const productId=productElem.value;
+			const totalQuantity=getTotalQuantityForProduct(productId);
+			
+			// 商品の在庫チェック
+			if(totalQuantity >= menuStock) return;
+			if (totalQuantity < menuStock) {
 				const quantityValue = ++orderstate.count;
 				counter.innerHTML = quantityValue;
 				const subtotalValue = pricePerItem * quantityValue;
@@ -59,6 +67,39 @@ function updateOrderState(menuId, menuQuantity, menuStock, _menuSubtotal, toppin
 		updateButtonDisplay(menuId, orderstate.count);
 	}
 }
+
+// 同じ商品IDの合計数を取得
+function getTotalQuantityForProduct(productId) {
+  let total = 0;
+  for (let key in sessionStorage) {
+    if (key.startsWith("menu_quantity_")) {
+      const orderId = key.replace("menu_quantity_", "");
+      const qty = parseInt(sessionStorage.getItem(key));
+      if (!isNaN(qty)) {
+        const productElem = document.getElementById(`productId-${orderId}`);
+        if (productElem && productElem.value == productId) {
+          total += qty;
+        }
+      }
+    }
+  }
+  return total;
+}
+
+// 同じトッピングIDの合計数を取得
+function getTotalQuantityForTopping(toppingId) {
+  let total = 0;
+  Object.keys(sessionStorage).forEach(key => {
+    if (key.startsWith("topping_quantity_")) {
+      if (key.includes(`_${toppingId}`)) {
+        const qty = parseInt(sessionStorage.getItem(key));
+        if (!isNaN(qty)) total += qty;
+      }
+    }
+  });
+  return total;
+}
+
 //ゴミ箱ボタンとマイナスボタンの切替処理
 function updateButtonDisplay(orderId, quantity) {
 	const decrementBtn = document.getElementById(`decrement-${orderId}`);
