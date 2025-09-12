@@ -16,8 +16,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/popup.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/OrderHistory/orderhistory.css">
 <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
-<!--.jsの呼び出し-->
-<script src="${pageContext.request.contextPath}/JavaScript/OrderHistory/orderhistory.js" defer></script>
 </head>
 <body>
 	<!--ヘッダー(店の名前)-->
@@ -148,5 +146,10 @@
 			</a>
 		</div>
 	</footer>
+	<!--.jsの呼び出し-->
+	<script src="${pageContext.request.contextPath}/JavaScript/OrderHistory/orderhistory.js" defer></script>
+	<script>
+	  const contextPath = '<%= request.getContextPath() %>';
+	</script>
 </body>
 </html>
