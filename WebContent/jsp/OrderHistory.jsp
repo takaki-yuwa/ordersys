@@ -91,7 +91,11 @@
 
 		<!-- 注文履歴なし -->
 		<c:if test="${empty orderHistory}">
-			<div class="break-word bold-text">注文履歴なし</div>
+			<div class="center-container">
+				<div class="square-box">
+					<p class="center-text">注文履歴がありません</p>
+				</div>
+			</div>
 		</c:if>
 		<c:set var="hasFlag1" value="false" />
 		<!-- 注文履歴をループして、未提供の注文（order_flag == 0）が1つでもあれば true にする -->

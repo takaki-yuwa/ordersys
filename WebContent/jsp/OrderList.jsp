@@ -113,7 +113,13 @@
 				</c:forEach>
 			</c:if>
 			<c:if test="${empty orderListInfo}">
-				<div class="break-word bold-text">カートが空です</div>
+				<div class="center-container">
+					
+					<div class="square-box">
+					<img src="${pageContext.request.contextPath}/image/cart.png" alt="カート">
+						<p class="center-text">注文リストに商品はありません</p>
+					</div>
+				</div>
 			</c:if>
 		</div>
 	</main>
