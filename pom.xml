@@ -37,5 +37,11 @@
         <version>3.0.1</version>
     </dependency>
     <!-- 他の依存関係 -->
+    <!-- JSON変換用ライブラリ -->
+	<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.10.1</version>
+	</dependency>
 </dependencies>
 </project>

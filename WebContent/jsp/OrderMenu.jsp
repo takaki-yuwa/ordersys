@@ -119,5 +119,8 @@
 			</form>
 		</div>
 	</footer>
+	<script>
+	  const contextPath = '<%= request.getContextPath() %>';
+	</script>
 </body>
 </html>
