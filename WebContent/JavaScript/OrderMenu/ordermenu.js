@@ -86,8 +86,6 @@ async function fetchProductList() {
     if (!response.ok) throw new Error('ネットワークエラー');
 
     const newProductList = await response.json();
-    console.log("新しいデータ:", newProductList);
-    console.log("以前のデータ:", previousProductList);
 
     if (hasDisplayFlagChanged(previousProductList, newProductList)) {
       console.log("product_display_flag の変更を検知 → リロード");
@@ -95,7 +93,6 @@ async function fetchProductList() {
       location.reload();
       return;
     } else {
-      console.log("変更なし");
     }
 
     previousProductList = newProductList;
