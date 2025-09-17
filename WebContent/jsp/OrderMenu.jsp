@@ -74,7 +74,7 @@
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty productInfo}">
-				商品情報がありません。
+					<p class="center-text">商品情報がありません</p>
 				</c:if>
 			</div>
 		</div>
